@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 });
 
-function generateNameBasedOnAdj () {
+function generateName () {
   let amountOfAdjIndex = Math.floor(Math.random() * adj.length);
   let amountOfNounIndex = Math.floor(Math.random() * noun.length);
   let catchAdjData = adj[amountOfAdjIndex] + " " + noun[amountOfNounIndex];
@@ -30,7 +30,7 @@ function generateNameBasedOnAdj () {
 
 app.post("/submit", (req, res) => {
   
-  const fullname = `${generateNameBasedOnAdj()}`;
+  const fullname = `${generateName()}`;
 
   res.render("index.ejs", {
     randomName: fullname,
