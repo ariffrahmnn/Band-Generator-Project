@@ -6,14 +6,18 @@ const port = 3000;
 
 app.use(express.static("public"));
 
-//Step 4 - Add a dynamic year to the footer.
-//Hint: Google to find out how to get the current year using JS.
+function dynamicYear () {
+  const currentYear = new Date().getFullYear();
+  return currentYear;
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
 
-  res.render("index.ejs")
+  res.render("index.ejs", {
+    thisYear: dynamicYear()
+  })
 
 });
 
@@ -34,7 +38,8 @@ app.post("/submit", (req, res) => {
   const fullname = `${generateNameBasedOnAdj()} ${generateNameBasedOnNoun()}`;
 
   res.render("index.ejs", {
-    randomName: fullname
+    randomName: fullname,
+    thisYear: dynamicYear()
   });
 });
 
