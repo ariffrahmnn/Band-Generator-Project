@@ -23,19 +23,14 @@ app.get("/", (req, res) => {
 
 function generateNameBasedOnAdj () {
   let amountOfAdjIndex = Math.floor(Math.random() * adj.length);
-  let catchAdjData = adj[amountOfAdjIndex];
-  return catchAdjData;
-}
-
-function generateNameBasedOnNoun () {
   let amountOfNounIndex = Math.floor(Math.random() * noun.length);
-  let catchNounData = noun[amountOfNounIndex];
-  return catchNounData;
+  let catchAdjData = adj[amountOfAdjIndex] + " " + noun[amountOfNounIndex];
+  return catchAdjData;
 }
 
 app.post("/submit", (req, res) => {
   
-  const fullname = `${generateNameBasedOnAdj()} ${generateNameBasedOnNoun()}`;
+  const fullname = `${generateNameBasedOnAdj()}`;
 
   res.render("index.ejs", {
     randomName: fullname,
